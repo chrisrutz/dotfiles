@@ -11,35 +11,19 @@ brew 'zsh'
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
 
-brew 'autoconf'
-brew 'automake'
 brew 'autossh'
 brew 'coreutils'
 brew 'git'
 brew 'git-flow'
 brew 'git-standup'
 brew 'gnupg'
-brew 'graphviz'
-brew 'hh'
-brew 'highlight'
 brew 'htop'
-brew 'libtool'
-brew 'libyaml'
 brew 'node'
-brew 'pkg-config'
-brew 'readline'
 brew 'ssh-copy-id'
-brew 'thefuck'
 brew 'vagrant-completion'
-brew 'vim'
 brew 'z'
 
 # services
-brew 'elasticsearch', restart_service: true
-brew 'memcached', restart_service: true
-brew 'mysql', restart_service: true
-brew 'postgresql', restart_service: true
-brew 'redis', restart_service: true
 cask 'java'
 cask 'ngrok'
 
@@ -53,9 +37,7 @@ cask 'launchrocket'
 cask 'macvim'
 cask 'monodraw'
 cask 'slack'
-cask 'spectacle'
 cask 'sublime-text'
-cask 'teamsql'
 cask 'tower'
 cask 'vagrant'
 cask 'virtualbox'
@@ -72,6 +54,8 @@ cask 'quicklook-json'
 
 # fonts
 cask 'font-fira-code'
+
+brew mas
 
 # mas
 mas 'Amphetamine', id: 937984704
