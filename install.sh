@@ -20,6 +20,10 @@ fi
 # Update Homebrew recipes
 brew update
 
+# Mac App Store
+brew install mas
+mas signin chris.rutz@googlemail.com
+
 # Install all our dependencies with bundle (See Brewfile)
 brew tap homebrew/bundle
 brew bundle
