@@ -24,18 +24,23 @@ brew 'vagrant-completion'
 brew 'z'
 
 # services
-cask 'java'
-cask 'ngrok'
+cask 'java' # Java Standard Edition Development Kit
+cask 'launchrocket' # pref pane to manage services
+cask 'ngrok' # Secure tunnels to localhost
 
 # apps
-cask 'aerial'
+cask '1password'
+cask 'aerial' # beautiful AppleTV screensaver
 cask 'alfred'
 cask 'appcleaner'
+cask 'dash' # offline documentation browser
 cask 'dropbox'
+cask 'google-chrome'
 cask 'iterm2'
-cask 'launchrocket'
+cask 'jetbrains-toolbox' # for RubyMine
 cask 'macvim'
 cask 'monodraw'
+cask 'skype'
 cask 'slack'
 cask 'sublime-text'
 cask 'tower'
