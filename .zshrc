@@ -93,6 +93,16 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew cask outdated; brew doctor'
+
+alias vu="vagrant up"
+alias vh="vagrant halt"
+alias vr="vagrant resume"
+alias vrl="vagrant reload"
+alias vs="vagrant ssh"
+alias vst="vagrant status"
+alias vp="vagrant provision"
+alias vdstr="vagrant destroy"
+
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
