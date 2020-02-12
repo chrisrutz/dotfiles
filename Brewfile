@@ -34,19 +34,17 @@ cask 'aerial' # beautiful AppleTV screensaver
 cask 'alfred'
 cask 'appcleaner'
 cask 'dash' # offline documentation browser
+cask 'docker'
 cask 'dropbox'
 cask 'google-chrome'
 cask 'iterm2'
 cask 'jetbrains-toolbox' # for RubyMine
 cask 'macvim'
-cask 'monodraw'
+cask 'postman'
 cask 'skype'
 cask 'slack'
+cask 'sublime-merge'
 cask 'sublime-text'
-cask 'tower'
-cask 'vagrant'
-cask 'virtualbox'
-cask 'virtualbox-extension-pack'
 cask 'vlc'
 
 # quicklook
@@ -75,9 +73,7 @@ mas 'Pixelmator', id: 407963104
 mas 'Power JSON Editor', id: 499768540
 mas 'Skitch', id: 425955336
 mas 'SnippetsLab', id: 1006087419
-mas 'Spark', id: 1176895641
 mas 'Things3', id: 904280696
-mas 'WhatsApp', id: 1147396723
 mas 'WiFi Explorer', id: 494803304
 mas 'Xcode', id: 497799835
 
