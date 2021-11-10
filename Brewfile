@@ -1,51 +1,48 @@
 # taps
 tap 'homebrew/bundle'
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
 tap 'homebrew/core'
 tap 'homebrew/services'
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
 
-# install zsh
+brew 'openssl'
+
 brew 'zsh'
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
 
-brew 'autossh'
-brew 'coreutils'
+brew 'awscli'
+brew 'croc'
+brew 'gh'
 brew 'git'
-brew 'git-flow'
-brew 'git-standup'
-brew 'gnupg'
-brew 'htop'
+brew 'imagemagick'
+brew 'mysql@5.7', restart_service: true, link: true
 brew 'node'
-brew 'ssh-copy-id'
-brew 'vagrant-completion'
+brew 'nvm'
+brew 'rbenv'
+brew 'sphinx'
+brew 'yarn'
 brew 'z'
 
-# services
-cask 'java' # Java Standard Edition Development Kit
-cask 'launchrocket' # pref pane to manage services
 cask 'ngrok' # Secure tunnels to localhost
 
+# fonts
+cask 'font-fira-code'
+cask 'font-jetbrains-mono'
+
 # apps
-cask '1password'
-cask 'aerial' # beautiful AppleTV screensaver
-cask 'alfred'
-cask 'appcleaner'
-cask 'dash' # offline documentation browser
-cask 'docker'
-cask 'dropbox'
-cask 'google-chrome'
 cask 'iterm2'
-cask 'jetbrains-toolbox' # for RubyMine
-cask 'macvim'
-cask 'postman'
-cask 'skype'
+cask 'jetbrains-toolbox'
+cask 'keepingyouawake'
+cask 'monitorcontrol'
+cask 'raycast'
+cask 'rectangle'
 cask 'slack'
+cask 'spotify'
 cask 'sublime-merge'
 cask 'sublime-text'
-cask 'vlc'
+cask 'visual-studio-code'
+cask 'zoom'
 
 # quicklook
 cask 'betterzipql'
@@ -54,26 +51,3 @@ cask 'qlmarkdown'
 cask 'qlstephen'
 cask 'quicklook-csv'
 cask 'quicklook-json'
-
-# fonts
-cask 'font-fira-code'
-
-brew mas
-
-# mas
-mas 'Amphetamine', id: 937984704
-mas 'Cleaner for Memory', id: 748212890
-mas 'CopyLess', id: 416439303
-mas 'DaisyDisk', id: 411643860
-mas 'Keynote', id: 409183694
-mas 'Magnet', id: 441258766
-mas 'Numbers', id: 409203825
-mas 'Pages', id: 409201541
-mas 'Pixelmator', id: 407963104
-mas 'Power JSON Editor', id: 499768540
-mas 'Skitch', id: 425955336
-mas 'SnippetsLab', id: 1006087419
-mas 'Things3', id: 904280696
-mas 'WiFi Explorer', id: 494803304
-mas 'Xcode', id: 497799835
-
