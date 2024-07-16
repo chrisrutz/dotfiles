@@ -1,28 +1,27 @@
 # taps
 tap 'homebrew/bundle'
 tap 'homebrew/cask'
-tap 'homebrew/cask-fonts'
 tap 'homebrew/core'
 tap 'homebrew/services'
+tap "stripe/stripe-cli"
 
-brew 'openssl'
+brew 'openssl@3'
 
 brew 'zsh'
+brew 'zsh-autosuggestions'
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
 
-brew 'awscli'
 brew 'croc'
 brew 'gh'
 brew 'git'
-brew 'imagemagick'
-brew 'mysql@5.7', restart_service: true, link: true
-brew 'node'
-brew 'nvm'
+brew 'mysql@8.0', restart_service: true, link: true
 brew 'rbenv'
-brew 'sphinx'
-brew 'yarn'
+brew 'stripe/stripe-cli/stripe'
 brew 'z'
+
+brew 'python@3.12'
+brew 'go'
 
 cask 'ngrok' # Secure tunnels to localhost
 
@@ -33,6 +32,7 @@ cask 'font-jetbrains-mono'
 # apps
 cask 'iterm2'
 cask 'jetbrains-toolbox'
+cask 'kdiff3'
 cask 'keepingyouawake'
 cask 'monitorcontrol'
 cask 'raycast'
@@ -45,8 +45,6 @@ cask 'visual-studio-code'
 cask 'zoom'
 
 # quicklook
-cask 'betterzipql'
-cask 'qlcolorcode'
 cask 'qlmarkdown'
 cask 'qlstephen'
 cask 'quicklook-csv'
