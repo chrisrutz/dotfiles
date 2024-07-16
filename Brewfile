@@ -1,9 +1,7 @@
 # taps
 tap 'homebrew/bundle'
-tap 'homebrew/cask'
-tap 'homebrew/core'
 tap 'homebrew/services'
-tap "stripe/stripe-cli"
+tap 'stripe/stripe-cli'
 
 brew 'openssl@3'
 
@@ -30,6 +28,10 @@ cask 'font-fira-code'
 cask 'font-jetbrains-mono'
 
 # apps
+cask '1password'
+cask '1password-cli'
+cask 'arc' 
+cask 'google-chrome'
 cask 'iterm2'
 cask 'jetbrains-toolbox'
 cask 'kdiff3'
