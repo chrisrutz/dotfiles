@@ -70,7 +70,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ruby rails brew gem bundler z macos)
+plugins=(git gh ruby rails golang python brew rbenv gem bundler z macos vscode aliases alias-finder stripe thefuck)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,7 +109,10 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias brewup='brew update; brew upgrade; brew cleanup; brew outdated --cask --greedy; brew doctor'
+alias brewup='bubu; brew doctor'
+
+zstyle ':omz:plugins:alias-finder' autoload yes
+zstyle ':omz:plugins:alias-finder' cheaper yes
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -117,6 +120,7 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/opt/openssl/lib/
 fi
@@ -124,6 +128,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval "$(rbenv init - zsh)"
+eval $(thefuck --alias)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
