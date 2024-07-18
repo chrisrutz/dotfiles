@@ -18,6 +18,8 @@ brew 'rbenv'
 brew 'stripe/stripe-cli/stripe'
 brew 'z'
 
+brew 'thefuck'
+
 brew 'python@3.12'
 brew 'go'
 
