@@ -1,1 +1,9 @@
-gem: --no-rdoc --no-ri
+install: --no-document
+update: --no-document
+:sources:
+  - https://rubygems.org/
+:backtrace: true
+:bulk_threshold: 1000
+:parallel_downloads: 4
+:verbose: true
+:benchmark: false
