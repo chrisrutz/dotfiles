@@ -1,8 +1,11 @@
-[user]
-  name = Christian Rutz
-  email = chrisrutz@gmail.com
 [color]
-  ui = true
+  ui = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[core]
+  editor = code --wait
 [alias]
   st = status -sb
   co = checkout
@@ -10,10 +13,11 @@
   br = branch
   l = log --graph --full-history --pretty=format:'%C(red)%h%Creset - %C(yellow)%s %C(green)(%an, %cr)%C(white)%d%C(reset)' --abbrev-commit --date=relative
   contains = branch --contains
-  fame = "!git ls-tree -r -z --name-only HEAD | xargs -0 -n1 git blame --line-porcelain HEAD |grep '^author '|sort|uniq -c|sort -nr"
-[core]
-  excludesfile = /Users/chrisrutz/.gitignore_global
+[init]
+  defaultBranch = main
 [fetch]
   prune = true
+[pull]
+  rebase = false
 [push]
-  autoSetupRemote = true
+  default = simple
