@@ -13,6 +13,7 @@ brew 'zsh-syntax-highlighting'
 brew 'croc'
 brew 'gh'
 brew 'git'
+brew 'jq'
 brew 'mysql@8.0', restart_service: true, link: true
 brew 'rbenv'
 brew 'stripe/stripe-cli/stripe'
