@@ -126,8 +126,15 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-eval "$(rbenv init - zsh)"
-eval $(thefuck --alias)
+if command -v rbenv &>/dev/null; then
+  eval "$(rbenv init - zsh)"
+fi
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion)"
+fi
+if command -v thefuck &>/dev/null; then
+  eval $(thefuck --alias)
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
