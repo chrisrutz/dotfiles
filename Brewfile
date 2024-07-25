@@ -23,6 +23,7 @@ brew 'thefuck'
 
 brew 'python@3.12'
 brew 'go'
+brew 'flutter'
 
 cask 'ngrok' # Secure tunnels to localhost
 
