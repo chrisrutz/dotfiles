@@ -1,5 +1,7 @@
 #!/bin/bash
 
+unset POSIXLY_CORRECT
+
 echo "Setting up your Mac..."
 
 set -e
@@ -18,6 +20,9 @@ prompt_override() {
     fi
   fi
 }
+
+print_message "Prompt for sudo password"
+sudo -v
 
 print_message "Make ZSH the default shell environment"
 chsh -s $(which zsh)
