@@ -50,6 +50,7 @@ cask 'spotify'
 cask 'sublime-merge'
 cask 'sublime-text'
 cask 'visual-studio-code'
+cask 'warp'
 cask 'zoom'
 
 # quicklook
