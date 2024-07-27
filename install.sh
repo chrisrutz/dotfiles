@@ -23,9 +23,10 @@ prompt_override() {
 
 print_message "Prompt for sudo password"
 sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 print_message "Make ZSH the default shell environment"
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 
 print_message "Install Xcode Command Line Tools"
 xcode-select --install &> /dev/null
