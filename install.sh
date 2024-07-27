@@ -43,7 +43,7 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 print_message "Update Homebrew formulae"
-brew update
+brew update && brew upgrade
 
 print_message "Install Brewfile bundle"
 brew tap homebrew/bundle
