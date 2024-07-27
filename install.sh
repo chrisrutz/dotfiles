@@ -39,7 +39,7 @@ fi
 
 print_message "Check Homebrew installation"
 if ! command -v brew >/dev/null 2>&1; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 print_message "Update Homebrew formulae"
@@ -51,11 +51,11 @@ brew bundle
 prompt_override ~/.Brewfile && cp Brewfile ~/.Brewfile
 
 print_message "Install Oh My Zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 print_message "Install iTerm2 shell integration"
-sh -c "$(curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh)"
+bash -c "$(curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh)"
 print_message "Install NVM"
-sh -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh)"
+bash -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh)"
 
 print_message "Install latest ruby version using rbenv"
 eval "$(rbenv init -)"
