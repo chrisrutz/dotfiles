@@ -77,7 +77,7 @@ print_message "Source zshrc"
 source ~/.zshrc
 
 print_message "Install Ruby gems"
-gem install bundler pry
+gem install pry bundler bundle_update_interactive
 
 print_message "Install Node.js"
 nvm install --lts
