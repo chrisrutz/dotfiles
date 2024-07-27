@@ -28,7 +28,7 @@ sudo chsh -s $(which zsh)
 
 print_message "Install Xcode Command Line Tools"
 if ! xcode-select -p &> /dev/null; then
-xcode-select --install &> /dev/null
+  xcode-select --install &> /dev/null
 
   until xcode-select -p &> /dev/null; do
     sleep 5
