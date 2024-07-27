@@ -1,7 +1,5 @@
 #!/bin/bash
 
-unset POSIXLY_CORRECT
-
 echo "Setting up your Mac..."
 
 set -e
