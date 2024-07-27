@@ -29,7 +29,15 @@ print_message "Make ZSH the default shell environment"
 sudo chsh -s $(which zsh)
 
 print_message "Install Xcode Command Line Tools"
+if ! xcode-select -p &> /dev/null; then
 xcode-select --install &> /dev/null
+
+  until xcode-select -p &> /dev/null; do
+    sleep 5
+  done
+
+  sudo xcodebuild -license
+fi
 
 print_message "Check Homebrew installation"
 if ! command -v brew >/dev/null 2>&1; then
