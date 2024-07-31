@@ -60,8 +60,11 @@ fi
 
 print_message "Install iTerm2 shell integration"
 bash -c "$(curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh)"
-print_message "Install NVM"
-bash -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh)"
+
+if [ ! -d "$HOME/.nvm" ]; then
+  print_message "Install NVM"
+  bash -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh)"
+fi
 
 print_message "Install latest ruby version using rbenv"
 eval "$(rbenv init -)"
