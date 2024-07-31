@@ -33,8 +33,6 @@ if ! xcode-select -p &> /dev/null; then
   until xcode-select -p &> /dev/null; do
     sleep 5
   done
-
-  sudo xcodebuild -license
 fi
 
 print_message "Check Homebrew installation"
