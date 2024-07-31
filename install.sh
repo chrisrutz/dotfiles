@@ -89,9 +89,9 @@ git config --global user.email "$(gh api user --jq '.email')"
 print_message "Install Ruby gems"
 gem install pry bundler bundle_update_interactive
 
-print_message "Install Node.js"
-nvm install --lts
-nvm alias default lts/*
+# print_message "Install Node.js"
+# nvm install --lts
+# nvm alias default lts/*
 
 # Set macOS preferences
 source .macos
