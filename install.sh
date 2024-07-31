@@ -50,7 +50,7 @@ brew update && brew upgrade
 
 print_message "Install Brewfile bundle"
 brew tap homebrew/bundle
-brew bundle
+brew bundle --no-lock
 prompt_override ~/.Brewfile && cp Brewfile ~/.Brewfile
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
