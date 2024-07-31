@@ -38,6 +38,10 @@ fi
 print_message "Check Homebrew installation"
 if ! command -v brew >/dev/null 2>&1; then
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  touch ~/.zprofile
+  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 print_message "Update Homebrew formulae"
