@@ -80,7 +80,9 @@ for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
 done
 
 print_message "Authenticate with GitHub"
-gh auth login
+if ! gh auth status &> /dev/null; then
+  gh auth login
+fi
 git config --global user.name "$(gh api user --jq '.name')"
 git config --global user.email "$(gh api user --jq '.email')"
 
