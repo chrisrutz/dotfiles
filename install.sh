@@ -86,9 +86,6 @@ fi
 git config --global user.name "$(gh api user --jq '.name')"
 git config --global user.email "$(gh api user --jq '.email')"
 
-print_message "Source zshrc"
-source ~/.zshrc
-
 print_message "Install Ruby gems"
 gem install pry bundler bundle_update_interactive
 
@@ -97,7 +94,16 @@ nvm install --lts
 nvm alias default lts/*
 
 # Set macOS preferences
-# We will run this last because this will reload the shell
-# source .macos
+source .macos
+
+# Enable FileVault (if not already enabled)
+# will output a recovery key that you should save in a safe place
+if [[ $(sudo fdesetup status | head -1) == "FileVault is Off." ]]; then
+  sudo fdesetup enable -user $(whoami)
+fi
+
+for app in "Finder" "Dock" "SystemUIServer"; do
+  killall "${app}" > /dev/null 2>&1
+done
 
 echo "Done."
