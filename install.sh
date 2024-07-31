@@ -69,8 +69,10 @@ fi
 print_message "Install latest ruby version using rbenv"
 eval "$(rbenv init -)"
 latest_ruby=$(rbenv install -l | grep -v - | tail -1)
-rbenv install $latest_ruby
-rbenv global $latest_ruby
+if [ $(rbenv version-name) != $latest_ruby ]; then
+  rbenv install $latest_ruby
+  rbenv global $latest_ruby
+fi
 
 print_message "Copy dotfiles"
 for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
