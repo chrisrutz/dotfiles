@@ -53,8 +53,11 @@ brew tap homebrew/bundle
 brew bundle
 prompt_override ~/.Brewfile && cp Brewfile ~/.Brewfile
 
-print_message "Install Oh My Zsh"
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  print_message "Install Oh My Zsh"
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
 print_message "Install iTerm2 shell integration"
 bash -c "$(curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh)"
 print_message "Install NVM"
