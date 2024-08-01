@@ -35,23 +35,25 @@ if ! xcode-select -p &> /dev/null; then
   done
 fi
 
-print_message "Check Homebrew installation"
 if ! command -v brew >/dev/null 2>&1; then
+  print_message "Install Homebrew"
   NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   touch ~/.zprofile
   (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
   eval "$(/opt/homebrew/bin/brew shellenv)"
   chmod -R go-w "$(brew --prefix)/share"
+else
+  print_message "Update Homebrew and installed formulae"
+  brew update && brew upgrade
 fi
-
-print_message "Update Homebrew formulae"
-brew update && brew upgrade
 
 print_message "Install Brewfile bundle"
 brew tap homebrew/bundle
 brew bundle --no-lock
-prompt_override ~/.Brewfile && cp Brewfile ~/.Brewfile
+prompt_override ~/Brewfile && cp Brewfile ~/Brewfile
+
+brew cleanup
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   print_message "Install Oh My Zsh"
