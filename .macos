@@ -5,7 +5,7 @@
 # https://github.com/atomantic/dotfiles/blob/main/install.sh
 
 #########################################################
-# UI / UX																								#
+# UI / UX                                               #
 #########################################################
 
 # Ask to keep changes when closing documents
@@ -26,7 +26,7 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write com.apple.ncprefs com.apple.ncprefs.allowTips -bool false
 
 #########################################################
-# DOCK 																									#
+# DOCK                                                  #
 #########################################################
 
 # Automatically hide and show the Dock
@@ -39,7 +39,7 @@ defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock static-only -bool true
 
 #########################################################
-# SCREENSHOTS 																					#
+# SCREENSHOTS                                           #
 #########################################################
 
 # Save screenshots to the desktop
@@ -52,7 +52,7 @@ defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.screencapture show-thumbnail -bool false
 
 #########################################################
-# FINDER 																								#
+# FINDER                                                #
 #########################################################
 
 # Show all file extensions in the Finder
@@ -99,7 +99,7 @@ defaults write com.apple.finder EmptyTrashSecurely -bool true
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 #########################################################
-# DESKTOP 																							#
+# DESKTOP                                               #
 #########################################################
 
 # Keep folders on top when sorting
@@ -115,7 +115,7 @@ defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
 #########################################################
-# MOUSE, TRACKPAD																				#
+# MOUSE, TRACKPAD                                       #
 #########################################################
 
 # Set movement speed of the mouse cursor
@@ -140,7 +140,7 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSw
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
 
 #########################################################
-# KEYBOARD 																							#
+# KEYBOARD                                              #
 #########################################################
 
 # Fn key opens emoji and symbols
@@ -162,7 +162,7 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 #########################################################
-# MISSION CONTROL 																			#
+# MISSION CONTROL                                       #
 #########################################################
 
 # Don't automatically rearrange Spaces based on most recent use
@@ -172,7 +172,7 @@ defaults write com.apple.dock mru-spaces -bool false
 defaults write com.apple.dock expose-group-apps -bool true
 
 #########################################################
-# ICLOUD 																								#
+# ICLOUD                                                #
 #########################################################
 
 # Allow Handoff between this Mac and your iCloud devices
@@ -183,14 +183,14 @@ defaults -currentHost write com.apple.coreservices.useractivityd "ActivityReceiv
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 #########################################################
-# TIME MACHINE 																					#
+# TIME MACHINE                                          #
 #########################################################
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 #########################################################
-# SECURITY 																							#
+# SECURITY                                              #
 #########################################################
 
 # Require password immediately after sleep or screen saver begins
