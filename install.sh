@@ -50,7 +50,7 @@ fi
 
 print_message "Install Brewfile bundle"
 brew tap homebrew/bundle
-brew bundle --no-lock
+brew bundle --no-lock --no-upgrade
 prompt_override ~/Brewfile && cp Brewfile ~/Brewfile
 
 brew cleanup
