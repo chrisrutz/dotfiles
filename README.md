@@ -29,7 +29,10 @@ The install script will do the following:
 - copy Visual Studio Code personal [profile](https://code.visualstudio.com/docs/editor/profiles)
 - authenticate with GitHub using GitHub CLI
 - install some default gems
-- configure MacOS default settings
+  - pry
+  - rubocop
+  - bundler
+- configure [MacOS default settings](#macos-default-settings)
 
 After finishing the installation, restart the system.
 
