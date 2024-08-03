@@ -72,7 +72,8 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 print_message "Install iTerm2 shell integration"
-bash -c "$(curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh)"
+curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+source ~/.iterm2_shell_integration.zsh
 
 if [ ! -d "$HOME/.nvm" ]; then
   print_message "Install NVM"
