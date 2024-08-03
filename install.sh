@@ -9,13 +9,24 @@ print_message()  {
 }
 
 prompt_override() {
-  local file=$1
-  if [ -f "$file" ]; then
-    read -p "$file already exists. Do you want to override it? (y/n): " choice
-    if [ "$choice" != "y" ]; then
-      mv "$file" "${file}.bak"
-      echo "Backup of $file created as ${file}.bak"
-    fi
+  local target=$1
+  if [ -e "$target" ]; then
+    read -p "$target already exists. Do you want to override it? (y/n): " choice
+    case "$choice" in
+      y|Y )
+        mv "$target" "${target}.bak"
+        return 0
+        ;;
+      n|N )
+        return 1
+        ;;
+      * )
+        echo "Invalid choice. Skipping."
+        return 1
+        ;;
+    esac
+  else
+    return 0
   fi
 }
 
