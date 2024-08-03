@@ -9,13 +9,24 @@ print_message()  {
 }
 
 prompt_override() {
-  local file=$1
-  if [ -f "$file" ]; then
-    read -p "$file already exists. Do you want to override it? (y/n): " choice
-    if [ "$choice" != "y" ]; then
-      mv "$file" "${file}.bak"
-      echo "Backup of $file created as ${file}.bak"
-    fi
+  local target=$1
+  if [ -e "$target" ]; then
+    read -p "$target already exists. Do you want to override it? (y/n): " choice
+    case "$choice" in
+      y|Y )
+        mv "$target" "${target}.bak"
+        return 0
+        ;;
+      n|N )
+        return 1
+        ;;
+      * )
+        echo "Invalid choice. Skipping."
+        return 1
+        ;;
+    esac
+  else
+    return 0
   fi
 }
 
@@ -50,7 +61,7 @@ fi
 
 print_message "Install Brewfile bundle"
 brew tap homebrew/bundle
-brew bundle --no-lock
+brew bundle --no-lock --no-upgrade
 prompt_override ~/Brewfile && cp Brewfile ~/Brewfile
 
 brew cleanup
@@ -61,7 +72,8 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 print_message "Install iTerm2 shell integration"
-bash -c "$(curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh)"
+curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+source ~/.iterm2_shell_integration.zsh
 
 if [ ! -d "$HOME/.nvm" ]; then
   print_message "Install NVM"
@@ -81,6 +93,9 @@ for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
   prompt_override ~/$file && cp $file ~/$file
 done
 
+print_message 'Copy Visual Studio Code Profile'
+prompt_override ~/Library/Application\ Support/Code/User/profiles/Personal.code-profile && cp Personal.code-profile ~/Library/Application\ Support/Code/User/profiles
+
 print_message "Authenticate with GitHub"
 if ! gh auth status &> /dev/null; then
   gh auth login
@@ -97,15 +112,5 @@ gem install pry bundler bundle_update_interactive
 
 # Set macOS preferences
 source .macos
-
-# Enable FileVault (if not already enabled)
-# will output a recovery key that you should save in a safe place
-if [[ $(sudo fdesetup status | head -1) == "FileVault is Off." ]]; then
-  sudo fdesetup enable -user $(whoami)
-fi
-
-for app in "Finder" "Dock" "SystemUIServer"; do
-  killall "${app}" > /dev/null 2>&1
-done
 
 echo "Done."

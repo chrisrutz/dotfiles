@@ -210,6 +210,12 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
+# Enable FileVault (if not already enabled)
+# will output a recovery key that you should save in a safe place
+if [[ $(sudo fdesetup status | head -1) == "FileVault is Off." ]]; then
+  sudo fdesetup enable -user $(whoami)
+fi
+
 #########################################################
 # DISPLAY & SCREENSAVER                                 #
 #########################################################
@@ -219,3 +225,11 @@ defaults write com.apple.iokit.AmbientLightSensor "Automatic Display Enabled" -b
 
 # Start screensaver after 5 minutes of inactivity
 defaults -currentHost write com.apple.screensaver idleTime -int 300
+
+#########################################################
+# FINISH                                                #
+#########################################################
+
+for app in "Finder" "Dock" "SystemUIServer"; do
+  killall "${app}" > /dev/null 2>&1
+done
