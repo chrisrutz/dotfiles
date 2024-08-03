@@ -81,6 +81,9 @@ for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
   prompt_override ~/$file && cp $file ~/$file
 done
 
+print_message 'Copy Visual Studio Code Profile'
+prompt_override ~/Library/Application\ Support/Code/User/profiles/Personal.code-profile && cp Personal.code-profile ~/Library/Application\ Support/Code/User/profiles
+
 print_message "Authenticate with GitHub"
 if ! gh auth status &> /dev/null; then
   gh auth login
