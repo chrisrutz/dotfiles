@@ -16,19 +16,22 @@ cd ~/.dotfiles
 sh install.sh
 ```
 
-The install script will install the following:
-- Xcode Command Line Tools
-- Homebrew
-- Homebrew packages and casks (see Brewfile)
-- Oh My Zsh
-- Oh My Zsh plugins
-- iTerm2 shell integration
-- NVM
-- the latest ruby version using rbenv
+The install script will do the following:
+- change the default shell to ZSH
+- install Xcode Command Line Tools
+- install [Homebrew](https://brew.sh/)
+- Homebrew packages, casks, and Visual Studio Code Extensions via [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) (see [Brewfile](Brewfile))
+- install [Oh My Zsh](https://ohmyz.sh/)
+- install [iTerm2 shell integration](https://iterm2.com/documentation-shell-integration.html)
+- install [NVM](https://github.com/nvm-sh/nvm)
+- install the latest ruby version using [rbenv](https://rbenv.org/)
 - copy dotfiles to home directory
+- copy Visual Studio Code personal [profile](https://code.visualstudio.com/docs/editor/profiles)
 - authenticate with GitHub using GitHub CLI
-- some default gems
-- MacOS default settings
+- install some default gems
+- configure MacOS default settings
+
+After finishing the installation, restart the system.
 
 ## MacOS default settings
 
