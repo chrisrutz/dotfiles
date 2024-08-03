@@ -195,3 +195,17 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
+
+# Enable FileVault (if not already enabled)
+# will output a recovery key that you should save in a safe place
+if [[ $(sudo fdesetup status | head -1) == "FileVault is Off." ]]; then
+  sudo fdesetup enable -user $(whoami)
+fi
+
+#########################################################
+# FINISH                                                #
+#########################################################
+
+for app in "Finder" "Dock" "SystemUIServer"; do
+  killall "${app}" > /dev/null 2>&1
+done

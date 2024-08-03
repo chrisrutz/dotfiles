@@ -112,14 +112,4 @@ gem install pry bundler bundle_update_interactive
 # Set macOS preferences
 source .macos
 
-# Enable FileVault (if not already enabled)
-# will output a recovery key that you should save in a safe place
-if [[ $(sudo fdesetup status | head -1) == "FileVault is Off." ]]; then
-  sudo fdesetup enable -user $(whoami)
-fi
-
-for app in "Finder" "Dock" "SystemUIServer"; do
-  killall "${app}" > /dev/null 2>&1
-done
-
 echo "Done."
