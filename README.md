@@ -37,4 +37,84 @@ After finishing the installation, restart the system.
 
 The script will set the following MacOS default settings:
 
+### UI/UX
 
+- Ask to keep changes when closing documents
+- Expand save panel by default
+- Expand print panel by default
+- Disable the "Are you sure you want to open this application?" dialog
+- Disable "Tips" notifications
+
+### Dock
+
+- Automatically hide and show the Dock
+- Don't show recent applications in Dock
+- Only show open applications in Dock (remove all apps from Dock)
+
+### Screenshots
+
+- Save screenshots to the desktop
+- Save screenshots in PNG format
+- Don't show thumbnail of screenshot after taking it
+
+### Finder
+
+- Show all filename extensions
+- Show hidden files
+- Show the status bar
+- Show the path bar
+- Set the default view style to list view
+- Keep folders on top when sorting
+- Set search scope to current folder
+- Disable warning when changing a file extension
+- Set Desktop as the default location for new Finder windows
+- Avoid creating .DS_Store files on network volumes
+- Avoid creating .DS_Store files on USB volumes
+- Automatically open a new Finder window when a volume is mounted
+- Empty Trash securely
+- Disable the warning when emptying the Trash
+
+### Desktop
+
+- Keep folders on top when sorting
+- Hide all desktop icons
+- Hide external disks on the desktop
+- Hide removable media on the desktop
+
+### Mouse and Trackpad
+
+- Set mouse and trackpad speed
+- Enable tap to click
+- Enable two-finger right-click
+- Swipe between pages with three fingers
+- Swipe between full-screen apps with four fingers
+- Mission Control with three fingers up
+- App Exposé with three fingers down
+
+### Keyboard
+
+- Fn key opens emoji and symbols
+- Disable auto-correct
+- Disable smart quotes
+- Disable smart dashes
+- Disable automatic capitalization
+- Disable automatic period substitution
+
+### Mission Control
+
+- Disable automatically rearrange Spaces based on most recent use
+- Group windows by application
+
+### iCloud
+
+- Save to disk by default
+- Allow Handoff between this Mac and your iCloud devices
+
+### Time Machine
+
+- Prevent Time Machine from prompting to use new hard drives as backup volume
+
+### Security & Privacy
+
+- Require password immediately after sleep or screen saver begins
+- Enable FileVault
