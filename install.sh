@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo "Setting up your Mac..."
+# Redirect stdout and stderr to a log file in append mode
+exec >> >(tee -a .install.log)
+exec 2>&1
 
 set -e
 
