@@ -175,6 +175,13 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 #########################################################
+# BATTERY                                               #
+#########################################################
+
+# Show battery percentage in menu bar
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+#########################################################
 # MISSION CONTROL                                       #
 #########################################################
 
