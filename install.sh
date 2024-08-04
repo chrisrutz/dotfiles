@@ -7,7 +7,7 @@ exec 2>&1
 set -e
 
 print_message()  {
-  echo "$1..."
+  echo "$1"
 }
 
 prompt_override() {
@@ -32,87 +32,160 @@ prompt_override() {
   fi
 }
 
-print_message "Prompt for sudo password"
-sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+check_macos() {
+  if [[ "$OSTYPE" != "darwin"* ]]; then
+    echo "Abort. This script is intended to be run on macOS."
+    exit 1
+  fi
+}
 
-print_message "Make ZSH the default shell environment"
-sudo chsh -s $(which zsh)
+setup_sudo() {
+  print_message "Prompt for sudo password"
+  sudo -v
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+}
 
-print_message "Install Xcode Command Line Tools"
-if ! xcode-select -p &> /dev/null; then
-  xcode-select --install &> /dev/null
+set_default_shell() {
+  print_message "Make ZSH the default shell environment"
+  sudo chsh -s $(which zsh)
+}
 
-  until xcode-select -p &> /dev/null; do
-    sleep 5
-  done
-fi
+install_xcode_command_line_tools() {
+  if ! xcode-select -p &> /dev/null; then
+    print_message "Install Xcode Command Line Tools"
+    xcode-select --install &> /dev/null
 
-if ! command -v brew >/dev/null 2>&1; then
-  print_message "Install Homebrew"
-  NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    until xcode-select -p &> /dev/null; do
+      sleep 5
+    done
+  else
+    print_message "Xcode Command Line Tools are already installed"
+  fi
+}
 
-  touch ~/.zprofile
-  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  chmod -R go-w "$(brew --prefix)/share"
-else
-  print_message "Update Homebrew and installed formulae"
-  brew update && brew upgrade
-fi
+install_homebrew() {
+  if ! command -v brew >/dev/null 2>&1; then
+    print_message "Install Homebrew"
+    NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-print_message "Install Brewfile bundle"
-brew tap homebrew/bundle
-brew bundle --no-lock --no-upgrade
-prompt_override ~/Brewfile && cp Brewfile ~/Brewfile
+    touch ~/.zprofile
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    chmod -R go-w "$(brew --prefix)/share"
+  else
+    print_message "Homebrew is already installed, Updating Homebrew and installed formulae"
+    brew update && brew upgrade
+  fi
+}
 
-brew cleanup
+install_homebrew_bundle() {
+  print_message "Pre-install zoomus cask to avoid sudo prompt"
+  if ! brew list --cask zoomus &>/dev/null; then
+    sudo brew install --cask zoomus
+  fi
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  print_message "Install Oh My Zsh"
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-fi
+  print_message "Install Brewfile bundle"
+  brew tap homebrew/bundle
+  brew bundle --no-lock --no-upgrade
+  prompt_override ~/Brewfile && cp Brewfile ~/Brewfile
 
-print_message "Install iTerm2 shell integration"
-curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
-source ~/.iterm2_shell_integration.zsh
+  brew cleanup
+}
 
-if [ ! -d "$HOME/.nvm" ]; then
-  print_message "Install NVM"
+install_oh_my_zsh() {
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    print_message "Install Oh My Zsh"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  fi
+}
+
+install_iterm2_shell_integration() {
+  print_message "Install iTerm2 shell integration"
+  curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+  source ~/.iterm2_shell_integration.zsh
+}
+
+install_nvm() {
+  print_message "Install or Update NVM"
   bash -c "$(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh)"
-fi
 
-print_message "Install latest ruby version using rbenv"
-eval "$(rbenv init -)"
-latest_ruby=$(rbenv install -l | grep -v - | tail -1)
-if [ $(rbenv version-name) != $latest_ruby ]; then
-  rbenv install $latest_ruby
-  rbenv global $latest_ruby
-fi
+  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+}
 
-print_message "Copy dotfiles"
-for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
-  prompt_override ~/$file && cp $file ~/$file
-done
+install_node() {
+  print_message "Install Node.js"
+  nvm install node
+  nvm alias default node
+}
 
-print_message 'Copy Visual Studio Code Profile'
-prompt_override ~/Library/Application\ Support/Code/User/profiles/Personal.code-profile && cp Personal.code-profile ~/Library/Application\ Support/Code/User/profiles
+install_ruby() {
+  eval "$(rbenv init -)"
+  latest_ruby=$(rbenv install -l | grep -v - | tail -1)
+  if [ $(rbenv version-name) != $latest_ruby ]; then
+    print_message "Install latest ruby version using rbenv"
+    rbenv install $latest_ruby
+    rbenv global $latest_ruby
+  else
+    print_message "Latest ruby version is already installed"
+  fi
+}
 
-print_message "Authenticate with GitHub"
-if ! gh auth status &> /dev/null; then
-  gh auth login
-fi
-git config --global user.name "$(gh api user --jq '.name')"
-git config --global user.email "$(gh api user --jq '.email')"
+copy_dotfiles() {
+  print_message "Copy dotfiles"
+  for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
+    prompt_override ~/$file && cp $file ~/$file
+  done
+}
 
-print_message "Install Ruby gems"
-gem install pry bundler bundle_update_interactive
+copy_vscode_profile() {
+  print_message "Copy Visual Studio Code Profile"
+  prompt_override ~/Library/Application\ Support/Code/User/profiles/Personal.code-profile && cp Personal.code-profile ~/Library/Application\ Support/Code/User/profiles
+}
 
-# print_message "Install Node.js"
-# nvm install --lts
-# nvm alias default lts/*
+authenticate_with_github() {
+  if ! gh auth status &> /dev/null; then
+    print_message "Authenticate with GitHub"
+    gh auth login
+  else
+    print_message "Already authenticated with GitHub"
+  fi
+  git config --global user.name "$(gh api user --jq '.name')"
+  git config --global user.email "$(gh api user --jq '.email')"
+}
 
-# Set macOS preferences
-source .macos
+install_global_gems() {
+  print_message "Install global Ruby gems"
+  gem install rubocop solargraph pry bundler bundle_update_interactive
+}
 
-echo "Done."
+configure_macos_preferences() {
+  print_message "Configure macOS preferences"
+  source .macos
+}
+
+main() {
+  print_message "Setting up your Mac..."
+  print_message "This script will run a series of commands to set up your Mac just the way I like it."
+  print_message "Please review the script before running it."
+  check_macos
+  setup_sudo
+  set_default_shell
+  install_xcode_command_line_tools
+  install_homebrew
+  install_homebrew_bundle
+  install_oh_my_zsh
+  install_iterm2_shell_integration
+  install_nvm
+  install_node
+  install_ruby
+  copy_dotfiles
+  copy_vscode_profile
+  authenticate_with_github
+  install_global_gems
+  configure_macos_preferences
+
+  print_message "Done."
+}
+
+main "$@"
