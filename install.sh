@@ -135,7 +135,7 @@ copy_dotfiles() {
 
 copy_vscode_profile() {
   print_message "Copy Visual Studio Code Profile"
-  prompt_override ~/Library/Application\ Support/Code/User/profiles/Personal.code-profile && cp Personal.code-profile ~/Library/Application\ Support/Code/User/profiles
+  prompt_override ~/Library/Application\ Support/Code/User/profiles/chrisrutz.code-profile && cp chrisrutz.code-profile ~/Library/Application\ Support/Code/User/profiles
 }
 
 authenticate_with_github() {
@@ -175,7 +175,7 @@ main() {
   install_node
   install_ruby
   copy_dotfiles
-  copy_vscode_profile
+  # copy_vscode_profile # profile is already synced with GitHub
   authenticate_with_github
   install_global_gems
   configure_macos_preferences
