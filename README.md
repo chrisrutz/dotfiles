@@ -8,12 +8,12 @@ On a fresh install of macOS, git is not installed by default.
 Download this repository, and run the following commands:
 
 ```bash
-curl -LJO https://github.com/chrisrutz/dotfiles/archive/refs/heads/master.zip
-unzip -q dotfiles-master.zip
-mv dotfiles-master ~/.dotfiles
-rm dotfiles-master.zip
+curl -LJO https://github.com/chrisrutz/dotfiles/archive/refs/heads/main.zip
+unzip -q dotfiles-main.zip
+mv dotfiles-main ~/.dotfiles
+rm dotfiles-main.zip
 cd ~/.dotfiles
-sh install.sh
+bash install.sh
 ```
 
 The install script will do the following:
