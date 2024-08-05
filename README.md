@@ -17,6 +17,7 @@ bash install.sh
 ```
 
 The install script will do the following:
+
 - change the default shell to ZSH
 - install Xcode Command Line Tools
 - install [Homebrew](https://brew.sh/)
