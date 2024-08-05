@@ -79,11 +79,6 @@ install_homebrew() {
 }
 
 install_homebrew_bundle() {
-  print_message "Pre-install zoomus cask to avoid sudo prompt"
-  if ! brew list --cask zoomus &>/dev/null; then
-    sudo brew install --cask zoomus
-  fi
-
   print_message "Install Brewfile bundle"
   brew tap homebrew/bundle
   brew bundle --no-lock --no-upgrade
