@@ -27,7 +27,7 @@ The install script will do the following:
 - install [NVM](https://github.com/nvm-sh/nvm)
 - install the latest ruby version using [rbenv](https://rbenv.org/)
 - copy dotfiles to home directory
-- copy Visual Studio Code personal [profile](https://code.visualstudio.com/docs/editor/profiles)
+- ~copy Visual Studio Code personal [profile](https://code.visualstudio.com/docs/editor/profiles)~
 - authenticate with GitHub using GitHub CLI
 - install some default gems
   - pry
