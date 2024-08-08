@@ -12,11 +12,18 @@ print_message()  {
 
 prompt_override() {
   local target=$1
+  local backup_dir="$HOME/.dotfiles.backup"
+  local timestamp=$(date +%s)
+
+  if [ ! -d "$backup_dir" ]; then
+    mkdir -p "$backup_dir"
+  fi
+
   if [ -e "$target" ]; then
     read -p "$target already exists. Do you want to override it? (y/n): " choice
     case "$choice" in
       y|Y )
-        mv "$target" "${target}.bak"
+        mv "$target" "$backup_dir/$(basename "$target").$timestamp"
         return 0
         ;;
       n|N )
@@ -68,21 +75,25 @@ install_homebrew() {
     print_message "Install Homebrew"
     NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    touch ~/.zprofile
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+    touch "$HOME/.zprofile"
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
     eval "$(/opt/homebrew/bin/brew shellenv)"
     chmod -R go-w "$(brew --prefix)/share"
   else
     print_message "Homebrew is already installed, Updating Homebrew and installed formulae"
     brew update && brew upgrade
   fi
+  prompt_override "$HOME/.homebrew/brew.env" && {
+    mkdir -p "$HOME/.homebrew"
+    cp .homebrew/brew.env "$HOME/.homebrew/brew.env"
+  }
 }
 
 install_homebrew_bundle() {
   print_message "Install Brewfile bundle"
   brew tap homebrew/bundle
   brew bundle --no-lock --no-upgrade
-  prompt_override ~/Brewfile && cp Brewfile ~/Brewfile
+  prompt_override "$HOME/Brewfile" && cp Brewfile "$HOME/Brewfile"
 
   brew cleanup
 }
@@ -96,8 +107,8 @@ install_oh_my_zsh() {
 
 install_iterm2_shell_integration() {
   print_message "Install iTerm2 shell integration"
-  curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
-  source ~/.iterm2_shell_integration.zsh
+  curl -L https://iterm2.com/shell_integration/zsh -o "$HOME/.iterm2_shell_integration.zsh"
+  source "$HOME/.iterm2_shell_integration.zsh"
 }
 
 install_nvm() {
@@ -129,14 +140,14 @@ install_ruby() {
 copy_dotfiles() {
   print_message "Copy dotfiles"
   for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
-    prompt_override ~/$file && cp $file ~/$file
+    prompt_override "$HOME/$file" && cp $file "$HOME/$file"
   done
 }
 
-copy_vscode_profile() {
-  print_message "Copy Visual Studio Code Profile"
-  prompt_override ~/Library/Application\ Support/Code/User/profiles/chrisrutz.code-profile && cp chrisrutz.code-profile ~/Library/Application\ Support/Code/User/profiles
-}
+# copy_vscode_profile() {
+#   print_message "Copy Visual Studio Code Profile"
+#   prompt_override "$HOME/Library/Application\ Support/Code/User/profiles/chrisrutz.code-profile" && cp chrisrutz.code-profile "$HOME/Library/Application\ Support/Code/User/profiles"
+# }
 
 authenticate_with_github() {
   if ! gh auth status &> /dev/null; then
@@ -175,7 +186,7 @@ main() {
   install_node
   install_ruby
   copy_dotfiles
-  # copy_vscode_profile # profile is already synced with GitHub
+  # copy_vscode_profile # disabled as profiles are synced with github
   authenticate_with_github
   install_global_gems
   configure_macos_preferences
