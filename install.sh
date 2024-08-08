@@ -75,21 +75,25 @@ install_homebrew() {
     print_message "Install Homebrew"
     NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    touch ~/.zprofile
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+    touch "$HOME/.zprofile"
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
     eval "$(/opt/homebrew/bin/brew shellenv)"
     chmod -R go-w "$(brew --prefix)/share"
   else
     print_message "Homebrew is already installed, Updating Homebrew and installed formulae"
     brew update && brew upgrade
   fi
+  prompt_override "$HOME/.homebrew/brew.env" && {
+    mkdir -p "$HOME/.homebrew"
+    cp .homebrew/brew.env "$HOME/.homebrew/brew.env"
+  }
 }
 
 install_homebrew_bundle() {
   print_message "Install Brewfile bundle"
   brew tap homebrew/bundle
   brew bundle --no-lock --no-upgrade
-  prompt_override ~/Brewfile && cp Brewfile ~/Brewfile
+  prompt_override "$HOME/Brewfile" && cp Brewfile "$HOME/Brewfile"
 
   brew cleanup
 }
@@ -103,8 +107,8 @@ install_oh_my_zsh() {
 
 install_iterm2_shell_integration() {
   print_message "Install iTerm2 shell integration"
-  curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
-  source ~/.iterm2_shell_integration.zsh
+  curl -L https://iterm2.com/shell_integration/zsh -o "$HOME/.iterm2_shell_integration.zsh"
+  source "$HOME/.iterm2_shell_integration.zsh"
 }
 
 install_nvm() {
@@ -136,7 +140,7 @@ install_ruby() {
 copy_dotfiles() {
   print_message "Copy dotfiles"
   for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
-    prompt_override ~/$file && cp $file ~/$file
+    prompt_override "$HOME/$file" && cp $file "$HOME/$file"
   done
 }
 
