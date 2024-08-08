@@ -84,6 +84,7 @@ The script will set the following MacOS default settings:
 - Hide all desktop icons
 - Hide external disks on the desktop
 - Hide removable media on the desktop
+- Don't reveal Desktop when clicking wallpaper
 
 ### Mouse and Trackpad
 
@@ -92,8 +93,8 @@ The script will set the following MacOS default settings:
 - Enable two-finger right-click
 - Swipe between pages with three fingers
 - Swipe between full-screen apps with four fingers
-- Mission Control with three fingers up
-- App Exposé with three fingers down
+- Mission Control with three-finger swipe up
+- App Exposé with three-finger swipe down
 
 ### Keyboard
 
@@ -103,6 +104,15 @@ The script will set the following MacOS default settings:
 - Disable smart dashes
 - Disable automatic capitalization
 - Disable automatic period substitution
+
+### Battery
+
+- show battery percentage in menu bar
+
+### Control Center
+
+- Show battery percentage in menu bar
+- Don't show Siri in menu bar
 
 ### Mission Control
 
@@ -122,3 +132,8 @@ The script will set the following MacOS default settings:
 
 - Require password immediately after sleep or screen saver begins
 - Enable FileVault
+
+### Display & Screensaver
+
+- Disable automatic adjustment of display brightness
+- Start screensaver after 5 minutes of inactivity

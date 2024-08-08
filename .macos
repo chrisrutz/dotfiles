@@ -3,6 +3,7 @@
 # https://macos-defaults.com/
 # https://github.com/kdeldycke/dotfiles/blob/main/macos-config.sh
 # https://github.com/atomantic/dotfiles/blob/main/install.sh
+# https://github.com/emmercm/dotfiles/blob/master/settings.sh
 
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null
@@ -117,6 +118,9 @@ defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 # Hide removable media on the desktop
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
+# Click wallpaper to reveal desktop: off
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -int 0
+
 #########################################################
 # MOUSE, TRACKPAD                                       #
 #########################################################
@@ -141,6 +145,11 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryCli
 defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 1
+
+# Swipe between full screen apps with four fingers
+defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.fourFingerHorizSwipeGesture -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadFourFingerHorizSwipeGesture -int 2
 
 # Enable Mission Control with three-finger swipe up
 defaults write com.apple.dock showMissionControlGestureEnabled -bool true
@@ -175,11 +184,14 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 #########################################################
-# BATTERY                                               #
+# CONTROL CENTER                                        #
 #########################################################
 
 # Show battery percentage in menu bar
-defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
+
+# Don't show Siri in the menu bar
+defaults write com.apple.Siri StatusMenuVisible -bool false
 
 #########################################################
 # MISSION CONTROL                                       #
