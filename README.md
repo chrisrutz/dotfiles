@@ -47,7 +47,6 @@ The script will set the following MacOS default settings:
 - Expand save panel by default
 - Expand print panel by default
 - Disable the "Are you sure you want to open this application?" dialog
-- Disable "Tips" notifications
 
 ### Dock
 
