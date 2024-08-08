@@ -12,11 +12,18 @@ print_message()  {
 
 prompt_override() {
   local target=$1
+  local backup_dir="$HOME/.dotfiles.backup"
+  local timestamp=$(date +%s)
+
+  if [ ! -d "$backup_dir" ]; then
+    mkdir -p "$backup_dir"
+  fi
+
   if [ -e "$target" ]; then
     read -p "$target already exists. Do you want to override it? (y/n): " choice
     case "$choice" in
       y|Y )
-        mv "$target" "${target}.bak"
+        mv "$target" "$backup_dir/$(basename "$target").$timestamp"
         return 0
         ;;
       n|N )
