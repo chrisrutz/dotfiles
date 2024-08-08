@@ -177,7 +177,7 @@ main() {
   check_macos
   setup_sudo
   set_default_shell
-  install_xcode_command_line_tools
+  # install_xcode_command_line_tools # can be skipped as Xcode Command Line Tools are installed with Homebrew
   install_homebrew
   install_homebrew_bundle
   install_oh_my_zsh

@@ -19,7 +19,7 @@ bash install.sh
 The install script will do the following:
 
 - change the default shell to ZSH
-- install Xcode Command Line Tools
+- install Xcode Command Line Tools (during Homebrew installation)
 - install [Homebrew](https://brew.sh/)
 - Homebrew packages, casks, and Visual Studio Code Extensions via [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle) (see [Brewfile](Brewfile))
 - install [Oh My Zsh](https://ohmyz.sh/)
