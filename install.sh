@@ -6,6 +6,8 @@ exec 2>&1
 
 set -e
 
+BACKUP_TIMESTAMP=$(date +%s)
+
 print_message()  {
   echo "$1"
 }
@@ -13,7 +15,6 @@ print_message()  {
 prompt_override() {
   local target=$1
   local backup_dir="$HOME/.dotfiles.backup"
-  local timestamp=$(date +%s)
 
   if [ ! -d "$backup_dir" ]; then
     mkdir -p "$backup_dir"
@@ -23,7 +24,7 @@ prompt_override() {
     read -p "$target already exists. Do you want to override it? (y/n): " choice
     case "$choice" in
       y|Y )
-        mv "$target" "$backup_dir/$(basename "$target").$timestamp"
+        mv "$target" "$backup_dir/$(basename "$target").$BACKUP_TIMESTAMP"
         return 0
         ;;
       n|N )
