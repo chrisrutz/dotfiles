@@ -42,7 +42,7 @@ cask 'google-chrome'
 cask 'iterm2'
 cask 'itermai'
 cask 'jetbrains-toolbox'
-cask 'kdiff3'
+cask 'kdiff3' # quarantined
 cask 'keepingyouawake'
 cask 'monitorcontrol'
 cask 'notion'
@@ -57,6 +57,6 @@ cask 'visual-studio-code'
 
 # quicklook
 cask 'qlmarkdown'
-cask 'qlstephen'
+cask 'qlstephen' # https://github.com/whomwah/qlstephen?tab=readme-ov-file#permissions-quarantine
 cask 'quicklook-csv'
 cask 'quicklook-json'
