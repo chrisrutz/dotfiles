@@ -92,7 +92,6 @@ install_homebrew() {
 
 install_homebrew_bundle() {
   print_message "Install Brewfile bundle"
-  brew tap homebrew/bundle
   brew bundle --no-lock --no-upgrade
   prompt_override "$HOME/Brewfile" && cp Brewfile "$HOME/Brewfile"
 
