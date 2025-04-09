@@ -1,6 +1,4 @@
 # taps
-tap 'homebrew/bundle'
-tap 'homebrew/services'
 tap 'stripe/stripe-cli'
 
 brew 'openssl@3'
