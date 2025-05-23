@@ -136,3 +136,8 @@ The script will set the following MacOS default settings:
 
 - Disable automatic adjustment of display brightness
 - Start screensaver after 5 minutes of inactivity
+
+## Additional configuration
+
+- ngrok (login with github: https://dashboard.ngrok.com/login)
+  - `ngrok config add-authtoken $YOUR_AUTHTOKEN`  
