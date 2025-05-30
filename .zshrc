@@ -70,7 +70,10 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gh ruby rails golang python brew rbenv gem bundler z macos vscode aliases alias-finder stripe thefuck)
+plugins=(git gh ruby rails golang python brew rbenv gem bundler z macos vscode aliases alias-finder stripe thefuck nvm)
+
+zstyle ':omz:plugins:nvm' autoload yes
+zstyle ':omz:plugins:nvm' silent-autoload yes
 
 source $ZSH/oh-my-zsh.sh
 
