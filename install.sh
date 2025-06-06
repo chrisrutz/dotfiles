@@ -137,6 +137,11 @@ install_ruby() {
   fi
 }
 
+create_folders() {
+  print_message "Create folders"
+  mkdir -p "$HOME/Code" "$HOME/Screenshots"
+}
+
 copy_dotfiles() {
   print_message "Copy dotfiles"
   for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
@@ -185,6 +190,7 @@ main() {
   install_nvm
   install_node
   install_ruby
+  create_folders
   copy_dotfiles
   # copy_vscode_profile # disabled as profiles are synced with github
   authenticate_with_github
