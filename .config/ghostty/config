@@ -8,4 +8,4 @@ quick-terminal-animation-duration = 0
 quick-terminal-autohide = false
 theme = Aardvark Blue
 window-inherit-working-directory = true
-working-directory = ~/Projects
+working-directory = ~/Code
