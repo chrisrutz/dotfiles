@@ -31,6 +31,9 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
 
+# Limit the update verbosity to only errors
+zstyle ':omz:update' verbose silent
+
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
 
