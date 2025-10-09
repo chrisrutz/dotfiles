@@ -6,6 +6,7 @@
   status = auto
 [core]
   editor = code --wait
+  excludesfile = ~/.gitignore_global
 [alias]
   st = status -sb
   co = checkout
