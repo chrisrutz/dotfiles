@@ -1,6 +1,4 @@
 # taps
-tap 'stripe/stripe-cli'
-
 brew 'openssl@3'
 
 brew 'zsh'
@@ -15,7 +13,6 @@ brew 'jq'
 brew 'mysql@8.0', restart_service: true, link: true
 brew 'postgresql@16', restart_service: true, link: true
 brew 'rbenv'
-brew 'stripe/stripe-cli/stripe'
 brew 'z'
 
 brew 'thefuck'
