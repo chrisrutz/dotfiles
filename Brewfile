@@ -16,6 +16,7 @@ brew 'rbenv'
 brew 'z'
 
 brew 'thefuck'
+brew 'ollama'
 
 brew 'python@3.12'
 brew 'go'
