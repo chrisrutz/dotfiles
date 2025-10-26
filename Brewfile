@@ -1,4 +1,3 @@
-# taps
 brew 'openssl@3'
 
 brew 'zsh'
@@ -15,12 +14,9 @@ brew 'postgresql@16', restart_service: true, link: true
 brew 'rbenv'
 brew 'z'
 
-brew 'thefuck'
 brew 'ollama'
-
 brew 'python@3.12'
 brew 'go'
-cask 'flutter'
 
 cask 'ngrok' # Secure tunnels to localhost
 
@@ -30,7 +26,6 @@ cask 'font-jetbrains-mono'
 
 # apps
 cask '1password'
-cask '1password-cli'
 cask 'alt-tab'
 cask 'bartender'
 cask 'chatgpt'
@@ -43,11 +38,8 @@ cask 'jetbrains-toolbox'
 cask 'kdiff3' # quarantined
 cask 'keepingyouawake'
 cask 'monitorcontrol'
-cask 'notion'
-cask 'notion-calendar'
 cask 'raycast'
 cask 'rectangle'
-cask 'slack'
 cask 'spotify'
 cask 'teamviewer'
 cask 'virtualbuddy'
