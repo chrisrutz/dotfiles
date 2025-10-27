@@ -6,6 +6,10 @@ copy-on-select = clipboard
 keybind = global:option+space=toggle_quick_terminal
 quick-terminal-animation-duration = 0
 quick-terminal-autohide = false
-theme = Aardvark Blue
+theme = Cyberdyne
+# alternative themes: Material Ocean, Night Owl, Purple Rain, Aardvark Blue
 window-inherit-working-directory = true
-working-directory = ~/Code
+working-directory = home
+window-padding-x = 10
+window-padding-y = 10
+macos-titlebar-style = tabs
