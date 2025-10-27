@@ -46,7 +46,4 @@ cask 'virtualbuddy'
 cask 'visual-studio-code'
 
 # quicklook
-cask 'qlmarkdown'
-cask 'qlstephen' # https://github.com/whomwah/qlstephen?tab=readme-ov-file#permissions-quarantine
-cask 'quicklook-csv'
-cask 'quicklook-json'
+cask 'glance-chamburr', args: { no_quarantine: true }
