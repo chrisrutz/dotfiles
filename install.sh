@@ -144,7 +144,7 @@ create_folders() {
 
 copy_dotfiles() {
   print_message "Copy dotfiles"
-  for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global}; do
+  for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global,spaceshiprc.zsh}; do
     prompt_override "$HOME/$file" && cp $file "$HOME/$file"
   done
 }
