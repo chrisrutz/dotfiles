@@ -147,6 +147,12 @@ copy_dotfiles() {
   for file in .{gemrc,irbrc,pryrc,zshrc,gitconfig,gitignore_global,spaceshiprc.zsh}; do
     prompt_override "$HOME/$file" && cp $file "$HOME/$file"
   done
+
+  print_message "Copy ghostty config"
+  prompt_override "$HOME/.config/ghostty/config" && {
+    mkdir -p "$HOME/.config/ghostty"
+    cp .config/ghostty/config "$HOME/.config/ghostty/config"
+  }
 }
 
 # copy_vscode_profile() {
