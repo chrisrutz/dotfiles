@@ -6,6 +6,7 @@ copy-on-select = clipboard
 keybind = global:option+space=toggle_quick_terminal
 quick-terminal-animation-duration = 0
 quick-terminal-autohide = false
+quick-terminal-size = 45%,90%
 theme = Cyberdyne
 # alternative themes: Material Ocean, Night Owl, Purple Rain, Aardvark Blue
 window-inherit-working-directory = true
